@@ -12,14 +12,17 @@
 			<input id="name_field" name="name" type="text" value="<?=$item->name?>" /><br/>
 			
 			<label for="filename_field" class="mainlabel"><?=@text('Filename')?></label>
-			<input id="filename_field" name="filename" type="text" value="<?=$item->filename?>" /><br/>
+			<input id="filename_field" name="filename" type="text" value="<?=$item->filename?>" disabled="disabled" /><br/>
 			
 			<label for="delete_file_field" class="mainlabel"><?=@text('Delete File')?></label>
 			<input type="checkbox" id="delete_file_field" name="filename_delete" /><br/>
 			
 			<label for="file_field" class="mainlabel"><?=@text('File')?></label>
-			<input type="file" id="file_field" name="filename_upload"  />
+			<input type="file" id="file_field" name="filename_upload"  /><br/>
 			
+			<? if ($item->filename): ?>
+				<img src="/media/com_test/uploads/<?=$item->filename?>" width="100%" />
+			<? endif;?>
 		</fieldset>
 	</div>
 </form>
