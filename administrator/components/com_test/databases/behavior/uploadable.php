@@ -191,7 +191,6 @@ class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 		}
 		
 		imagedestroy($final_image);
-		echo $fullpath."\n";
 	}
 	
 }

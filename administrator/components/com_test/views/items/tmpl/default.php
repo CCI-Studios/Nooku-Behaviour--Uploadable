@@ -29,7 +29,7 @@
 			</td>
 			<td align="center">
 				<? if ($item->filename !== ''): ?>
-				 <img src="<?=$item->filename?>" />
+				 <img src="/media/com_test/uploads/<?=$item->filename?>" />
 				<? else: ?>
 				 &nbsp;
 				<? endif; ?>
