@@ -4,10 +4,8 @@ jimport('joomla.filesystem.file');
 class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 	
 	protected $_location;
-	//protected $_column;
+	//protected $_columns;
 	protected $_thumbs;
-	protected $_prefix;
-	protected $_suffix;
 	protected $_filter;
 	
 	public function __construct(KConfig $config = null)
@@ -30,9 +28,7 @@ class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 							$this->getIdentifier()->type.'_'.
 							$this->getIdentifier()->package.'/uploads/',
 			//'column'	=> 'filename',
-			'thumbs'	=> array(array(100, 200)),
-			'prefix'	=> 'pre',
-			'suffix'	=> 'suf',
+			'thumbs'	=> array(),
 			'filter'	=> '/jpg|gif|png/'
 		));
 		
@@ -77,10 +73,10 @@ class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 	}
 	
 	protected function thumbName($filename, $thumb) {
-		return	"{$this->_prefix}_".
-				"{$filename}_".
-				"{$this->_suffix}_".
-				"$thumb[0]x$thumb[1]";
+		$name  = ($thumb->prefix !== '')? "{$thumb->prefix}_": "";
+		$name .= "{$filename}";
+		$name .= ($thumb->suffix !== '')? "_{$thumb->suffix}" : "";
+		return $name;
 	}
 	
 	protected function imagePath()
@@ -156,8 +152,8 @@ class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 	
 	protected function createThumb($filename, $extension, $thumbinfo, &$original)
 	{
-		$width	= $thumbinfo[0];
-		$height	= $thumbinfo[1];
+		$width	= $thumbinfo->width;
+		$height	= $thumbinfo->height;
 		$name	= $this->thumbName($filename, $thumbinfo);
 		$ratio	= $width/$height;
 		
