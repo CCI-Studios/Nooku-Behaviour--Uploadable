@@ -161,7 +161,7 @@ class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 			$temp_height 	= $height;
 			$temp_width		= (int)($height * $original->ratio);
 		} else {
-			$temp_height	= (int)($original->width / $original->ratio);
+			$temp_height	= (int)($width / $original->ratio);
 			$temp_width		= $width;
 		}
 		
