@@ -1,7 +1,24 @@
 <?php
-jimport('joomla.filesystem.file');
+/**
+ * @version			$Id $
+ * @category		Koowa
+ * @package 		Koowa_Database
+ * @subpackage 	Behavior
+ * @copyright		Copyright (C) 2010-2011 CCI Studios. All rights reserved.
+ * @license			GNU GPLv3 <http://www.gnu.org/license/gpl.html>
+ * @link				http://ccistudis.com
+ *
+ */
 
-class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
+/**
+ * Database uploadable behavior
+ *
+ * @author 			Jonathan Bennett <jbennett@ccistudios.com>
+ * @category 		Koowa
+ * @package 		Koowa_Database
+ * @subpackage	Behavior
+ */
+class KDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 	
 	protected $_location;
 	//protected $_columns;
@@ -10,15 +27,12 @@ class ComTestDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 	
 	public function __construct(KConfig $config = null)
 	{
+		jimport('joomla.filesystem.file'); // replace with nooku file options
 		parent::__construct($config);
 		
 		foreach($config as $key=>$value) {
 			$this->{'_'.$key} = $value;
 		}
-		
-		/*echo "<pre>";
-		echo htmlentities(print_r($this, 1));
-		die;/**/
 	}
 	
 	protected function _initialize(KConfig $config)
