@@ -1,1 +1,13 @@
 Nooku Behavior to allow users to simply upload photos to their site.
+
+To use add the following to the initialize function of your table:
+
+$uploadable	= KDatabaseBehavior::factory('uploadable', array(
+	'location'	=> '/media/COMPONENT/uploads/',
+	'fieldname'	=> 'DATABASE COLUMN', 
+	'thumbs' 	=> array(
+		array('prefix' => 't', 'width' => 400, 'height' => 400),
+		array('suffix' => 'p', 'width' => 100, 'height' => 100)
+	)
+));
+$config->behaviors = array($uploadable);
