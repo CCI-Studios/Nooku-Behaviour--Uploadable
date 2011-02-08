@@ -50,7 +50,7 @@ class KDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 	protected function _beforeTableUpdate(KCommandContext $context)
 	{		
 		$post = $context->data;
-		$file = KRequest::get('FILES.filename_upload', 'raw');
+		$file = KRequest::get('FILES.'.$this->_fieldname.'_upload', 'raw');
 		
 		// cancel if there is an error and there is a file
 		if ($file['error'] !== 0 && $file['error'] !== 4) {
@@ -59,9 +59,9 @@ class KDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 		}
 		
 		// delete images if requested or if a new file is uploaded
-		if (isset($post->filename_delete) || $file['error'] != 4) {
-			$this->deleteAllImages($post->filename);
-			$post->filename = null;
+		if (isset($post->{$this->_fieldname.'_delete'}) || $file['error'] != 4) {
+			$this->deleteAllImages($post->{$this->_fieldname});
+			$post->{$this->_fieldname} = null;
 		}
 		
 		// no file to save
@@ -75,7 +75,7 @@ class KDatabaseBehaviorUploadable extends KDatabaseBehaviorAbstract {
 		}
 		
 		$this->createThumbs($filename, $extension);
-		$post->filename = $filename.$extension;
+		$post->{$this->_fieldname} = $filename.$extension;
 		
 		return true;
 	}

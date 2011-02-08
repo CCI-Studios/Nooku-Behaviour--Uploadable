@@ -28,8 +28,8 @@
 				</a>
 			</td>
 			<td align="center">
-				<? if ($item->filename !== ''): ?>
-				 <img src="/media/com_test/uploads/p_<?=$item->filename?>" />
+				<? if ($item->file_exists !== ''): ?>
+				 <img src="/media/com_test/uploads/p_<?=$item->file?>" />
 				<? else: ?>
 				 &nbsp;
 				<? endif; ?>

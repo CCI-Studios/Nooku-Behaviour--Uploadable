@@ -5,8 +5,9 @@ class ComTestDatabaseTableItems extends KDatabaseTableDefault {
 	
 	protected function _initialize(KConfig $config) {
 		$uploadable	= KDatabaseBehavior::factory('uploadable', array(
-			'location'=>'/media/com_test/uploads/',
-			'thumbs' => array(
+			'location'	=> '/media/com_test/uploads/',
+			'fieldname'	=> 'file', 
+			'thumbs' 	=> array(
 				array('prefix' => 't', 'width' => 400, 'height' => 400),
 				array('prefix' => 'p', 'width' => 100, 'height' => 100)
 			)
